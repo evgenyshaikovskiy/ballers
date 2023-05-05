@@ -8,6 +8,7 @@ import {
   getDataSourceToken,
 } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { LeagueController } from './league.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([League])],
@@ -21,6 +22,6 @@ import { DataSource } from 'typeorm';
     },
     LeagueService,
   ],
-  controllers: [LeagueService],
+  controllers: [LeagueController],
 })
 export class LeagueModule {}

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Club } from 'src/club/club.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Match {
@@ -7,4 +8,10 @@ export class Match {
 
   @Column()
   name: string;
+
+  @ManyToOne(() => Club, (club) => club.homeMatches)
+  homeClub: Club;
+
+  @ManyToOne(() => Club, (club) => club.awayMatches)
+  awayClub: Club;
 }

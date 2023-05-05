@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Club } from 'src/club/club.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Baller {
@@ -16,4 +17,7 @@ export class Baller {
 
   @Column()
   position: string;
+
+  @ManyToOne(() => Club, (club) => club.ballers)
+  club: Club;
 }

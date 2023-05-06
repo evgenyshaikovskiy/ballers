@@ -6,9 +6,9 @@ export class League {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => Club, (club) => club.league)
+  @OneToMany(() => Club, (club) => club.league, { onDelete: 'CASCADE' })
   clubs: Club[];
 }

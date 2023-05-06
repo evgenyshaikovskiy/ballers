@@ -13,7 +13,7 @@ export interface MatchRepository extends Repository<Match> {
 }
 
 export const customMatchRepository: Pick<Match, any> = {
-  async createBaller(
+  async createMatch(
     this: Repository<Match>,
     createMatchDto: CreateMatchDto,
     homeClub: Club,

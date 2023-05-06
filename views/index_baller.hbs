@@ -44,12 +44,12 @@
   <div class="ballers-wrapper">
     {{#each ballers}}
     <div class="baller-entity-wrapper">
-      <div class="baller-name">{{name}} {{scoreHome}} {{scoreAway}}</div>
+      <div class="baller-name">{{fullName}}</div>
       <div class="baller-entity-actions">
-        <form action="http://localhost:3000/baller/delete/{{name}}" method="get">
+        <form action="http://localhost:3000/baller/delete/{{fullName}}" method="get">
           <button class="submit-form-action">Delete baller</button>
         </form>
-        <form action="http://localhost:3000/baller/view/{{name}}" method="get">
+        <form action="http://localhost:3000/baller/view/{{fullName}}" method="get">
           <button class="submit-form-action">View baller</button>
         </form>
       </div>

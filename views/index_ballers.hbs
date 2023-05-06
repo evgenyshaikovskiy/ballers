@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .index-baller-title {
+      font-weight: bold;
+      font-size: xx-large;
+    }
+
+    .ballers-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .submit-form-btn {
+      width: 100px;
+      height: 50px;
+      font-weight: 700;
+    }
+
+    .submit-form-btn:hover {
+      cursor: pointer;
+    }
+  </style>
+  <title>All ballers</title>
+</head>
+
+<body>
+  <div class="index-ballers-title">All ballers</div>
+  <div class="ballers-wrapper">
+    {{#each ballers}}
+    <div class="baller-entity-wrapper">
+      <div class="baller-name">{{name}} {{scoreHome}} {{scoreAway}}</div>
+      <div class="baller-entity-actions">
+        <form action="http://localhost:3000/baller/delete/{{name}}" method="get">
+          <button class="submit-form-action">Delete baller</button>
+        </form>
+        <form action="http://localhost:3000/baller/view/{{name}}" method="get">
+          <button class="submit-form-action">View baller</button>
+        </form>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <form action="http://localhost:3000/baller/create" method="get">
+    <button class="submit-form-btn">Create new baller</button>
+  </form>
+</body>
+
+</html>

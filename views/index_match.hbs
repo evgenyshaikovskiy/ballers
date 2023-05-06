@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .index-match-title {
+      font-weight: bold;
+      font-size: xx-large;
+    }
+
+    .matches-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .submit-form-btn {
+      width: 100px;
+      height: 50px;
+      font-weight: 700;
+    }
+
+    .submit-form-btn:hover {
+      cursor: pointer;
+    }
+  </style>
+  <title>All matches</title>
+</head>
+
+<body>
+  <div class="index-match-title">All matches</div>
+  <div class="matches-wrapper">
+    {{#each matches}}
+    <div class="match-entity-wrapper">
+      <div class="match-name">{{name}} {{scoreHome}} {{scoreAway}}</div>
+      <div class="match-entity-actions">
+        <form action="http://localhost:3000/match/delete/{{name}}" method="get">
+          <button class="submit-form-action">Delete match</button>
+        </form>
+        <form action="http://localhost:3000/match/view/{{name}}" method="get">
+          <button class="submit-form-action">View match</button>
+        </form>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <form action="http://localhost:3000/match/create" method="get">
+    <button class="submit-form-btn">Create new match</button>
+  </form>
+</body>
+
+</html>

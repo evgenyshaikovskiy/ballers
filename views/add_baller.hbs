@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .create-baller-title {
+      font-weight: bold;
+      font-size: xx-large;
+    }
+
+    .create-baller-form {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .submit-form-btn {
+      width: 100px;
+      height: 50px;
+      font-weight: 700;
+    }
+
+    .submit-form-btn:hover {
+      cursor: pointer;
+    }
+
+    .form-field {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .form-input {
+      outline: 0;
+    }
+  </style>
+  <title>Create new baller</title>
+</head>
+
+<body>
+  <div class="create-baller-title">Create baller</div>
+  <form action="http://localhost:3000/baller" method="POST" class="create-baller-form">
+    <div class="form-field">
+      <div class="form-label">Enter baller full name</div>
+      <input class="form-input" type="text" name="fullName" id="fullName" />
+    </div>
+    <div class="form-field">
+      <div class="form-label">Enter baller age</div>
+      <input class="form-input" type="text" name="age" id="age" />
+    </div>
+    <div class="form-field">
+      <div class="form-label">Enter baller position</div>
+      <input class="form-input" type="text" name="position" id="position" />
+    </div>
+    <div class="form-field">
+      <div class="form-label">Enter baller club's name</div>
+      <input class="form-input" type="text" name="clubName" id="clubName" />
+    </div>
+    <button class="submit-form-btn">
+      Create
+    </button>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .submit-form-btn {
+      width: 100px;
+      height: 50px;
+      font-weight: 700;
+    }
+
+    .menu-btns-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .submit-form-btn:hover {
+      cursor: pointer;
+    }
+  </style>
+  <title>All leagues</title>
+</head>
+
+<body>
+  <div class="menu-btns-wrapper">
+    <form class="form-menu" action="http://localhost:3000/league/index" action="get">
+      <button class="submit-form-btn">View all leagues</button>
+    </form>
+    <form class="form-menu" action="http://localhost:3000/club/index" action="get">
+      <button class="submit-form-btn">View all clubs</button>
+    </form>
+    <form class="form-menu" action="http://localhost:3000/baller/index" action="get">
+      <button class="submit-form-btn">View all ballers</button>
+    </form>
+    <form class="form-menu" action="http://localhost:3000/match/index" action="get">
+      <button class="submit-form-btn">View all matches</button>
+    </form>
+  </div>
+</body>
+
+</html>

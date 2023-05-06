@@ -23,7 +23,6 @@ export class LeagueController {
   @Render('view_league')
   async showEditLeagueForm(@Param() params: { name: string }) {
     const league = await this.leagueService.getLeagueByName(params.name);
-    console.log(league);
     return { league: league };
   }
 

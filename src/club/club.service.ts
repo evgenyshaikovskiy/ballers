@@ -17,6 +17,8 @@ export class ClubService {
     const league = await this.leagueService.getLeagueByName(
       createClubDto.league_name,
     );
+
+    console.log(league);
     return await this.clubRepository.createClub(createClubDto.name, league);
   }
 
@@ -43,7 +45,6 @@ export class ClubService {
     return await this.clubRepository.save({
       id: toUpdate.id,
       name: newName,
-      ...toUpdate,
     });
   }
 }

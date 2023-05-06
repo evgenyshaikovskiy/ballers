@@ -9,9 +9,10 @@ import {
 } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Club } from './club.entity';
+import { LeagueModule } from 'src/league/league.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Club])],
+  imports: [TypeOrmModule.forFeature([Club]), LeagueModule],
   providers: [
     {
       provide: getRepositoryToken(Club),
@@ -23,5 +24,6 @@ import { Club } from './club.entity';
     ClubService,
   ],
   controllers: [ClubController],
+  exports: [ClubService],
 })
 export class ClubModule {}

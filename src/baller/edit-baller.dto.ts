@@ -1,6 +1,5 @@
-export class CreateBallerDto {
+export class EditBallerDto {
   fullName: string;
   age: number;
   position: string;
-  clubName: string;
 }

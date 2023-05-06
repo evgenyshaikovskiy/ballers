@@ -9,9 +9,10 @@ import { DataSource } from 'typeorm';
 import { customBallerRepository } from './baller.repository';
 import { BallerController } from './baller.controller';
 import { BallerService } from './baller.service';
+import { ClubModule } from 'src/club/club.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Baller])],
+  imports: [TypeOrmModule.forFeature([Baller]), ClubModule],
   providers: [
     {
       provide: getRepositoryToken(Baller),
@@ -23,5 +24,6 @@ import { BallerService } from './baller.service';
     BallerService,
   ],
   controllers: [BallerController],
+  exports: [BallerService],
 })
 export class BallerModule {}

@@ -9,9 +9,10 @@ import {
   getDataSourceToken,
 } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { ClubModule } from 'src/club/club.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Match])],
+  imports: [TypeOrmModule.forFeature([Match]), ClubModule],
   providers: [
     {
       provide: getRepositoryToken(Match),
@@ -23,5 +24,6 @@ import { DataSource } from 'typeorm';
     MatchService,
   ],
   controllers: [MatchController],
+  exports: [MatchService],
 })
 export class MatchModule {}

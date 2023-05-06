@@ -1,18 +1,19 @@
 import { Repository } from 'typeorm';
 import { Club } from './club.entity';
-import { CreateClubDto } from './club.dto';
+import { League } from 'src/league/league.entity';
 
 export interface ClubRepository extends Repository<Club> {
   this: Repository<Club>;
-  createClub(createClubDto: CreateClubDto): Promise<void>;
+  createClub(name: string, league: League): Promise<void>;
 }
 
 export const customClubRepository: Pick<Club, any> = {
   async createClub(
     this: Repository<Club>,
-    createClubDto: CreateClubDto,
+    name: string,
+    league: League,
   ): Promise<void> {
-    const club = this.create({ ...createClubDto });
+    const club = this.create({ name: name, league: league });
     try {
       await this.save(club);
     } catch (error) {

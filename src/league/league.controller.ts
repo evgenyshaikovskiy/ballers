@@ -1,11 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
-  Redirect,
-  Render,
+  Put,
 } from '@nestjs/common';
 import { LeagueService } from './league.service';
 import { CreateLeagueDto } from './league.dto';
@@ -14,54 +14,34 @@ import { CreateLeagueDto } from './league.dto';
 export class LeagueController {
   constructor(private readonly leagueService: LeagueService) {}
 
-  @Get('index')
-  @Render('index_league')
-  async viewAllLeagues() {
-    Redirect('http://localhost:3000/league/index');
-    const all = await this.leagueService.all();
-    return { leagues: all };
+  @Get('')
+  async getAll() {
+    return await this.leagueService.all();
   }
 
-  @Get('create')
-  @Render('add_league')
-  async showCreateLeagueForm() {
-    return {};
+  @Get('/:name')
+  async getLeague(@Param() params: { name: string }) {
+    return await this.leagueService.getLeagueByName(params.name);
   }
 
-  @Get('view/:name')
-  @Render('view_league')
-  async showEditLeagueForm(@Param() params: { name: string }) {
-    const league = await this.leagueService.getLeagueByName(params.name);
-    return { league: league };
-  }
-
-  @Get('delete/:name')
-  @Render('index_league')
+  @Delete('/:name')
   async deleteLeague(@Param() params: { name: string }) {
-    Redirect('http://localhost:3000/league/index');
-    await this.leagueService.deleteLeagueByName(params.name);
-    const all = await this.leagueService.all();
-    return { leagues: all };
+    return await this.leagueService.deleteLeagueByName(params.name);
   }
 
   @Post()
-  @Render('index_league')
   async createLeague(@Body() createLeagueDto: CreateLeagueDto) {
-    Redirect('http://localhost:3000/league/index');
-    await this.leagueService.createLeague(createLeagueDto);
-    const all = await this.leagueService.all();
-    return { leagues: all };
+    return await this.leagueService.createLeague(createLeagueDto);
   }
 
-  @Post('update/:name')
-  @Render('index_league')
+  @Put('/:name')
   async editForm(
     @Param() params: { name: string },
     @Body() editLeagueDto: CreateLeagueDto,
   ) {
-    Redirect('http://localhost:3000/league/index');
-    await this.leagueService.updateLeague(params.name, editLeagueDto.name);
-    const all = await this.leagueService.all();
-    return { leagues: all };
+    return await this.leagueService.updateLeague(
+      params.name,
+      editLeagueDto.name,
+    );
   }
 }

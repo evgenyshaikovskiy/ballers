@@ -1,11 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
-  Redirect,
-  Render,
+  Put,
 } from '@nestjs/common';
 import { BallerService } from './baller.service';
 import { CreateBallerDto } from './baller.dto';
@@ -15,54 +15,32 @@ import { EditBallerDto } from './edit-baller.dto';
 export class BallerController {
   constructor(private readonly ballerService: BallerService) {}
 
-  @Get('index')
-  @Render('index_baller')
-  async viewAllBallers() {
-    Redirect('http://localhost:3000/baller/index');
+  @Get()
+  async getAll() {
     const all = await this.ballerService.all();
     return { ballers: all };
   }
 
-  @Get('create')
-  @Render('add_baller')
-  async showCreateBallerForm() {
-    return {};
+  @Get('/:name')
+  async getEditBaller(@Param() params: { name: string }) {
+    return await this.ballerService.getBallerByFullName(params.name);
   }
 
-  @Get('view/:name')
-  @Render('view_baller')
-  async showEditBallerForm(@Param() params: { name: string }) {
-    const baller = await this.ballerService.getBallerByFullName(params.name);
-    return { baller: baller };
-  }
-
-  @Get('delete/:name')
-  @Render('index_baller')
+  @Delete('/:name')
   async deleteBaller(@Param() params: { name: string }) {
-    Redirect('http://localhost:3000/baller/index');
-    await this.ballerService.deleteBallerByFullName(params.name);
-    const all = await this.ballerService.all();
-    return { ballers: all };
+    return await this.ballerService.deleteBallerByFullName(params.name);
   }
 
   @Post()
-  @Render('index_baller')
   async createBaller(@Body() createBallerDto: CreateBallerDto) {
-    Redirect('http://localhost:3000/baller/index');
-
-    await this.ballerService.createBaller(createBallerDto);
-    const all = await this.ballerService.all();
-    return { ballers: all };
+    return await this.ballerService.createBaller(createBallerDto);
   }
 
-  @Post('update/:name')
-  @Render('index_baller')
+  @Put('/:name')
   async editForm(
     @Param() params: { name: string },
     @Body() editBallersDto: EditBallerDto,
   ) {
-    await this.ballerService.updateBaller(params.name, editBallersDto);
-    const all = await this.ballerService.all();
-    return { ballers: all };
+    return await this.ballerService.updateBaller(params.name, editBallersDto);
   }
 }

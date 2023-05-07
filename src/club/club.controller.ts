@@ -15,23 +15,13 @@ import { UpdateClubDto } from './edit-club.dto';
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
 
-  @Get('index')
-  @Render('index_club')
+  @Get('')
   async viewAllClubs() {
-    Redirect('http://localhost:3000/club/index');
-    const all = await this.clubService.all();
-    return { clubs: all };
-  }
-
-  @Get('create')
-  @Render('add_club')
-  async showCreateClubForm() {
-    return {};
+    return await this.clubService.all();
   }
 
   @Get('view/:name')
-  @Render('view_club')
-  async showEditClubForm(@Param() params: { name: string }) {
+  async getClub(@Param() params: { name: string }) {
     const club = await this.clubService.getClubByName(params.name);
     return { club: club };
   }

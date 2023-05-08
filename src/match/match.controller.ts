@@ -35,7 +35,7 @@ export class MatchController {
     return await this.matchService.createMatch(createMatchDto);
   }
 
-  @Put('update/:name')
+  @Put('/:name')
   async editForm(
     @Param() params: { name: string },
     @Body() editMatchDto: UpdateMatchDto,

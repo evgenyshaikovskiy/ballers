@@ -1,11 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
-  Redirect,
-  Render,
+  Put,
 } from '@nestjs/common';
 import { ClubService } from './club.service';
 import { CreateClubDto } from './club.dto';
@@ -15,44 +15,31 @@ import { UpdateClubDto } from './edit-club.dto';
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
 
-  @Get('')
+  @Get()
   async viewAllClubs() {
     return await this.clubService.all();
   }
 
-  @Get('view/:name')
+  @Get('/:name')
   async getClub(@Param() params: { name: string }) {
-    const club = await this.clubService.getClubByName(params.name);
-    return { club: club };
+    return await this.clubService.getClubByName(params.name);
   }
 
-  @Get('delete/:name')
-  @Render('index_club')
+  @Delete('/:name')
   async deleteClub(@Param() params: { name: string }) {
-    Redirect('http://localhost:3000/club/index');
-    await this.clubService.deleteClubByName(params.name);
-    const all = await this.clubService.all();
-    return { clubs: all };
+    return await this.clubService.deleteClubByName(params.name);
   }
 
   @Post()
-  @Render('index_club')
   async createClub(@Body() createClubDto: CreateClubDto) {
-    Redirect('http://localhost:3000/club/index');
-    await this.clubService.createClub(createClubDto);
-    const all = await this.clubService.all();
-    return { clubs: all };
+    return await this.clubService.createClub(createClubDto);
   }
 
-  @Post('update/:name')
-  @Render('index_club')
+  @Put('/:name')
   async editForm(
     @Param() params: { name: string },
     @Body() editClubDto: UpdateClubDto,
   ) {
-    Redirect('http://localhost:3000/club/index');
-    await this.clubService.updateClub(params.name, editClubDto.name);
-    const all = await this.clubService.all();
-    return { clubs: all };
+    return await this.clubService.updateClub(params.name, editClubDto.name);
   }
 }

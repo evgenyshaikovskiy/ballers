@@ -17,8 +17,7 @@ export class BallerController {
 
   @Get()
   async getAll() {
-    const all = await this.ballerService.all();
-    return { ballers: all };
+    return await this.ballerService.all();
   }
 
   @Get('/:name')

@@ -14,7 +14,7 @@ import { CreateLeagueDto } from './league.dto';
 export class LeagueController {
   constructor(private readonly leagueService: LeagueService) {}
 
-  @Get('')
+  @Get()
   async getAll() {
     return await this.leagueService.all();
   }
